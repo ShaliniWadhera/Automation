@@ -1,17 +1,17 @@
 # Automation
 Automation of computer database and JavaScript alerts
 
-#Dependency
+#Dependency:
     Net core 3.1
     
-#About Automation
+#About Automation:
     The solution consist of three projects
     1. Automation Framework: which is the wrapper of selenium
     2. Computer Database: GUI tests related to computer DB
     3. JavaScriptAlerts: GUI test related to JS alerts
     
-#Sample test results
-    ```JavaScriptAlerts.Tests.Alert.CanVerifyJsAlert
+#Sample test results:
+    JavaScriptAlerts.Tests.Alert.CanVerifyJsAlert
     
        Opening browser Chrome
     ***********************************************
@@ -28,5 +28,5 @@ Automation of computer database and JavaScript alerts
         Alert present = True
         Alert text = I am a JS Alert
         Alert Accepted
-    ```
+    
     
