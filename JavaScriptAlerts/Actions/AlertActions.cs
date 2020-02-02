@@ -1,30 +1,40 @@
 ﻿using AutomationFramework;
 using OpenQA.Selenium;
+using Shouldly;
 
 namespace JavaScriptAlerts.Actions
 {
+
+    public enum AlertType
+    {
+        Alert,
+        Confirm,
+        Prompt
+    }
+    
     class AlertActions
     {
         private readonly SeleniumInteractions _selenium;
-        private const string HomeUrl = "https://localhost/";
 
         public AlertActions(SeleniumInteractions selenium)
         {
             _selenium = selenium;
         }
 
-        public void ClickForJsAlertButton()
+        public void ClickForJsAlert(AlertType alertType)
         {
-            var clickForJsAlert = By.XPath("//*[@id='content'] //button[text()='Click for JS Alert']");
+            var clickForJsAlert = By.XPath($"//*[@id='content'] //button[text()='Click for JS {alertType.ToString()}']");
 
             _selenium.Click(clickForJsAlert);
         }
 
-        public void ClickForJsConfirmButton()
+        public void VerifyAlertResult(string alertText)
         {
-            var clickForJsConfirm = By.XPath("//*[@id='content'] //button[text()='Click for JS Confirm']");
+            var resultText = By.Id("result");
 
-            _selenium.Click(clickForJsConfirm);
+            var element = _selenium.GetWebElement(resultText);
+            element.Text.ShouldBeEquivalentTo($"You entered: {alertText}", "Results are not matched");
+            _selenium.WriteLine((helper) => helper.WriteLine($"    '{alertText}' verified"));
         }
     }
 }

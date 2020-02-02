@@ -6,11 +6,11 @@ using Xunit.Abstractions;
 
 namespace JavaScriptAlerts.Tests
 {
-    public class Alert: IDisposable
+    public class Alert : IDisposable
     {
         private readonly ITestOutputHelper _testOutputHelper;
-        private  SeleniumInteractions _selenium;
-        private  AlertActions _alertAction;
+        private SeleniumInteractions _selenium;
+        private AlertActions _alertAction;
 
         public Alert(ITestOutputHelper testOutputHelper)
         {
@@ -23,10 +23,10 @@ namespace JavaScriptAlerts.Tests
         public void CanVerifyJsAlert()
         {
             var testCase = new TestCase(_testOutputHelper, "Can verify JS Alert");
-            
+
             testCase
                 .ExecuteTestStep("Open Heroku App", () => _selenium.NavigateToUrl(Constants.JavaScriptAlertsUrl))
-                .ExecuteTestStep("Click for JS alerts", _alertAction.ClickForJsAlertButton)
+                .ExecuteTestStep("Click for JS alerts", () => _alertAction.ClickForJsAlert(AlertType.Alert))
                 .ExecuteTestStep("Verify alert text", () => _selenium.HandleAlert("I am a JS Alert"))
                 ;
         }
@@ -35,11 +35,25 @@ namespace JavaScriptAlerts.Tests
         public void CanVerifyJsConfirm()
         {
             var testCase = new TestCase(_testOutputHelper, "Can verify JS Confirm");
+
+            testCase
+                .ExecuteTestStep("Open Heroku App", () => _selenium.NavigateToUrl(Constants.JavaScriptAlertsUrl))
+                .ExecuteTestStep("Click for JS Confirm", () => _alertAction.ClickForJsAlert(AlertType.Confirm))
+                .ExecuteTestStep("Verify alert text", () => _selenium.HandleAlert("I am a JS Confirm"))
+                ;
+        }
+        
+        [Fact]
+        public void CanVerifyJsPrompt()
+        {
+            var testCase = new TestCase(_testOutputHelper, "Can verify JS Prompt");
+            var inputForAlert = "JS Alert";
             
             testCase
                 .ExecuteTestStep("Open Heroku App", () => _selenium.NavigateToUrl(Constants.JavaScriptAlertsUrl))
-                .ExecuteTestStep("Click for JS Confirm", _alertAction.ClickForJsConfirmButton)
-                .ExecuteTestStep("Verify alert text", () => _selenium.HandleAlert("I am a JS Confirm"))
+                .ExecuteTestStep("Click for JS Prompt",() => _alertAction.ClickForJsAlert(AlertType.Prompt))
+                .ExecuteTestStep("Verify alert text", () => _selenium.HandleAlert("I am a JS prompt", inputForAlert))
+                .ExecuteTestStep("Verify alert result", () => _alertAction.VerifyAlertResult(inputForAlert))
                 ;
         }
 

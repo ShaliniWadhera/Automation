@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.UI;
+using Shouldly;
 using Xunit.Abstractions;
 
 namespace AutomationFramework
@@ -59,6 +63,7 @@ namespace AutomationFramework
             }
 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(15);
             driver.Manage().Window.Maximize();
 
             return driver;
@@ -67,14 +72,39 @@ namespace AutomationFramework
 
         public void SetValue(By selector, string value)
         {
+            if (!IsElementReady(selector))
+            {
+                throw new Exception($"Element is not ready to set value {selector.ToString()}");
+            }
+
+
+            _driver.FindElement(selector).Clear();
             _driver.FindElement(selector).SendKeys(value);
             _testOutputHelper.WriteLine($"    Setting value to '{selector.ToString()}' with '{value}'");
         }
 
         public void Click(By selector)
         {
+            if (!IsElementReady(selector))
+            {
+                throw new Exception($"Element is not ready to click {selector.ToString()}");
+            }
+
             _driver.FindElement(selector).Click();
             _testOutputHelper.WriteLine($"    Clicked '{selector.ToString()}'");
+        }
+
+        public void SelectText(By selector, string text)
+        {
+            if (!IsElementReady(selector))
+            {
+                throw new Exception($"Element is not ready to select {selector.ToString()}");
+            }
+
+            var element = _driver.FindElement(selector);
+            var selectElement = new SelectElement(element);
+
+            selectElement.SelectByText(text);
         }
 
 
@@ -91,6 +121,22 @@ namespace AutomationFramework
         public void WriteLine(Action<ITestOutputHelper> action)
         {
             action(_testOutputHelper);
+        }
+        
+        public ReadOnlyCollection<IWebElement> GetWebElements(By selector)
+        {
+            return _driver.FindElements(selector);
+        }
+        
+        public IWebElement GetWebElement(By selector)
+        {
+            return _driver.FindElement(selector);
+        }
+
+        public bool IsElementReady(By selector)
+        {
+            var element = _driver.FindElement(selector);
+            return element.Displayed && element.Enabled;
         }
 
         public void Dispose()

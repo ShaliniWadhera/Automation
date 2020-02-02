@@ -9,26 +9,41 @@ namespace AutomationFramework
     {
         private bool AlertIsPresent()
         {
-            IAlert alert = ExpectedConditions.AlertIsPresent().Invoke(_driver);
+            var alert = GetAlert();
             var alertPresent = (alert != null);
+            
             _testOutputHelper.WriteLine($"    Alert present = {alertPresent}");
             return alertPresent;
         }
 
         private string GetAlertText()
         {
-            IAlert alert = ExpectedConditions.AlertIsPresent().Invoke(_driver);
-
+            var alert = GetAlert();
             var alertText = alert.Text;
+            
             _testOutputHelper.WriteLine($"    Alert text = {alertText}");
             return alertText;
         }
 
         private void AlertAccept()
         {
-            IAlert alert = ExpectedConditions.AlertIsPresent().Invoke(_driver);
+            var alert = GetAlert();
             alert.Accept();
+            
             _testOutputHelper.WriteLine($"    Alert Accepted");
+        }
+
+        private IAlert GetAlert()
+        {
+            return SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent().Invoke(_driver); 
+        }
+        
+        private void AlertSetText(string text)
+        {
+            var alert = GetAlert();
+
+            alert.SendKeys(text);
+            _testOutputHelper.WriteLine($"    Set text to alert {text}");
         }
 
         public string HandleAlert()
@@ -44,7 +59,7 @@ namespace AutomationFramework
             return alertText;
         }
 
-        public string HandleAlert(string alertExpectedText)
+        public string HandleAlert(string alertExpectedText, string inputText = "")
         {
             if (!AlertIsPresent())
             {
@@ -55,6 +70,11 @@ namespace AutomationFramework
             alertText.ShouldBeGreaterThanOrEqualTo(alertExpectedText,
                 $"Alert text did not match the expected result, Actual = `{alertText}` Expected = `{alertExpectedText}`");
 
+            if (inputText != "")
+            {
+                AlertSetText(inputText);
+            }
+            
             AlertAccept();
 
             return alertText;
