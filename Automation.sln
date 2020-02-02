@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationFramework", "AutomationFramework\AutomationFramework.csproj", "{4510C90B-4051-4AB0-9FDA-E454FDF90369}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerDatabase", "ComputerDatabase\ComputerDatabase.csproj", "{F5B9FAB7-9AF8-43D7-B633-A37A7F8ADCD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptAlerts", "JavaScriptAlerts\JavaScriptAlerts.csproj", "{7CD282FB-08CC-4F96-9F76-42FD34F23D17}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4510C90B-4051-4AB0-9FDA-E454FDF90369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4510C90B-4051-4AB0-9FDA-E454FDF90369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4510C90B-4051-4AB0-9FDA-E454FDF90369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4510C90B-4051-4AB0-9FDA-E454FDF90369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5B9FAB7-9AF8-43D7-B633-A37A7F8ADCD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5B9FAB7-9AF8-43D7-B633-A37A7F8ADCD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5B9FAB7-9AF8-43D7-B633-A37A7F8ADCD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5B9FAB7-9AF8-43D7-B633-A37A7F8ADCD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CD282FB-08CC-4F96-9F76-42FD34F23D17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CD282FB-08CC-4F96-9F76-42FD34F23D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CD282FB-08CC-4F96-9F76-42FD34F23D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CD282FB-08CC-4F96-9F76-42FD34F23D17}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
