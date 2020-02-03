@@ -28,6 +28,7 @@ namespace JavaScriptAlerts.Tests
                 .ExecuteTestStep("Open Heroku App", () => _selenium.NavigateToUrl(Constants.JavaScriptAlertsUrl))
                 .ExecuteTestStep("Click for JS alerts", () => _alertAction.ClickForJsAlert(AlertType.Alert))
                 .ExecuteTestStep("Verify alert text", () => _selenium.HandleAlert("I am a JS Alert"))
+                .ExecuteTestStep("Verify alert result", () => _alertAction.VerifyAlertResult($"You successfuly clicked an alert"))
                 ;
         }
 
@@ -40,6 +41,7 @@ namespace JavaScriptAlerts.Tests
                 .ExecuteTestStep("Open Heroku App", () => _selenium.NavigateToUrl(Constants.JavaScriptAlertsUrl))
                 .ExecuteTestStep("Click for JS Confirm", () => _alertAction.ClickForJsAlert(AlertType.Confirm))
                 .ExecuteTestStep("Verify alert text", () => _selenium.HandleAlert("I am a JS Confirm"))
+                .ExecuteTestStep("Verify alert result", () => _alertAction.VerifyAlertResult($"You clicked: Ok"))
                 ;
         }
         
@@ -53,7 +55,7 @@ namespace JavaScriptAlerts.Tests
                 .ExecuteTestStep("Open Heroku App", () => _selenium.NavigateToUrl(Constants.JavaScriptAlertsUrl))
                 .ExecuteTestStep("Click for JS Prompt",() => _alertAction.ClickForJsAlert(AlertType.Prompt))
                 .ExecuteTestStep("Verify alert text", () => _selenium.HandleAlert("I am a JS prompt", inputForAlert))
-                .ExecuteTestStep("Verify alert result", () => _alertAction.VerifyAlertResult(inputForAlert))
+                .ExecuteTestStep("Verify alert result", () => _alertAction.VerifyAlertResult($"You entered: {inputForAlert}"))
                 ;
         }
 

@@ -33,7 +33,7 @@ namespace JavaScriptAlerts.Actions
             var resultText = By.Id("result");
 
             var element = _selenium.GetWebElement(resultText);
-            element.Text.ShouldBeEquivalentTo($"You entered: {alertText}", "Results are not matched");
+            element.Text.ShouldBeEquivalentTo(alertText, "Results are not matched");
             _selenium.WriteLine((helper) => helper.WriteLine($"    '{alertText}' verified"));
         }
     }

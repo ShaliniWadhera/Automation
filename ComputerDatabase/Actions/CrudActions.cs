@@ -120,10 +120,10 @@ namespace ComputerDatabase.Actions
         public void SearchComputer(string computerName)
         {
             var txtSearchBox = By.Id("searchbox");
-            var buttonSearch = By.Id("searchsubmit");
+            var buttonFilterByName = By.Id("searchsubmit");
 
             _selenium.SetValue(txtSearchBox, computerName);
-            _selenium.Click(buttonSearch);
+            _selenium.Click(buttonFilterByName);
         }
 
         public void DeleteComputer(string computerName)
