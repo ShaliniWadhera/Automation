@@ -1,8 +1,8 @@
 # Manual Tests
 
   Manual Testing folder contains 2 spreadsheets for the test cases:
-  Computer Database Test Cases.xlsx
-  Java Script Alerts Test Cases.xlsx
+  1. Computer Database Test Cases.xlsx
+  2. Java Script Alerts Test Cases.xlsx
   
   ## Bugs
   
