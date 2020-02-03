@@ -1,3 +1,14 @@
+# Manual Tests
+
+  Manual Testing folder contains 2 spreadsheets for the test cases:
+  Computer Database Test Cases.xlsx
+  Java Script Alerts Test Cases.xlsx
+  
+  ## Bugs
+  
+   Find the bugs logged in Bugs.xlsx and the corresponding screenshot in  BugJsAlerts.docx and BugComputerDatabase.docx respectively.
+  
+
 # Automation
 Automation of computer database and JavaScript alerts
 
