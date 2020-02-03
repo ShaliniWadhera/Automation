@@ -11,10 +11,13 @@ Automation of computer database and JavaScript alerts
     3. JavaScriptAlerts: GUI test related to JS alerts
     
 # How to run test
-    ## $dotnet build
-    ## $dotnet test
-    
-    Tests will run parallely from Computer Database and JavaScript alerts project. It is expected that one ** test case will fail ** 
+
+    $dotnet build
+    $dotnet test
+
+<pre>
+Tests will run parallely from Computer Database and JavaScript alerts project. It is expected that <b>one test case will fail</b>
+</pre>
     
 # Sample test results:
     JavaScriptAlerts.Tests.Alert.CanVerifyJsAlert
